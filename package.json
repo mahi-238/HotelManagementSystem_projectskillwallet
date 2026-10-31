@@ -1,0 +1,21 @@
+{
+  "name": "hotel-management-application",
+  "version": "1.0.0",
+  "description": "Full Stack Hotel Management Application (React, Vite, Node.js, Express, MongoDB)",
+  "scripts": {
+    "build": "npm install --prefix client && npm run build --prefix client && npm install --prefix server",
+    "start": "node server/index.js",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "node server/seed.js"
+  },
+  "keywords": [
+    "hotel-management",
+    "mern",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../services/api';
+import api, { BACKEND_URL } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Loading from '../components/Loading';
 import {
@@ -37,7 +37,7 @@ const RoomDetails = () => {
   const getImageUrl = (img) => {
     if (!img) return 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80';
     if (img.startsWith('http')) return img;
-    return `http://localhost:8001${img}`;
+    return `${BACKEND_URL}${img}`;
   };
 
   if (loading) return <Loading message="Loading room details..." />;

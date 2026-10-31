@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -45,8 +46,8 @@ app.use('/api/rooms', require('./routes/roomRoutes'));
 app.use('/api/bookings', require('./routes/bookingRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 
-// Root endpoint
-app.get('/', (req, res) => {
+// API Info & Health endpoint
+app.get('/api', (req, res) => {
   res.json({
     message: 'Hotel Management API is active and running',
     version: '1.0.0',
@@ -58,6 +59,32 @@ app.get('/', (req, res) => {
     },
   });
 });
+
+// Serve frontend in production if built
+const clientDistPath = path.join(__dirname, '../client/dist');
+if (fs.existsSync(path.join(clientDistPath, 'index.html'))) {
+  app.use(express.static(clientDistPath));
+
+  app.get('*', (req, res, next) => {
+    if (req.originalUrl.startsWith('/api') || req.originalUrl.startsWith('/uploads')) {
+      return next();
+    }
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'Hotel Management API is active and running',
+      version: '1.0.0',
+      endpoints: {
+        auth: '/api/auth',
+        rooms: '/api/rooms',
+        bookings: '/api/bookings',
+        dashboard: '/api/dashboard',
+      },
+    });
+  });
+}
 
 // Error handling middleware
 app.use(notFound);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../services/api';
 
 const RoomCard = ({ room }) => {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ const RoomCard = ({ room }) => {
   const getImageUrl = (img) => {
     if (!img) return 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80';
     if (img.startsWith('http')) return img;
-    return `http://localhost:8001${img}`;
+    return `${BACKEND_URL}${img}`;
   };
 
   return (

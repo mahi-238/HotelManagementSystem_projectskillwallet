@@ -1,7 +1,15 @@
 import axios from 'axios';
 import { getToken } from '../utils/getToken';
 
-const API_BASE_URL = 'http://localhost:8001/api';
+// Base backend URL: in production with unified server it's '', or custom VITE_BACKEND_URL, or localhost in dev
+export const BACKEND_URL =
+  import.meta.env.VITE_BACKEND_URL !== undefined
+    ? import.meta.env.VITE_BACKEND_URL
+    : import.meta.env.PROD
+    ? ''
+    : 'http://localhost:8001';
+
+const API_BASE_URL = `${BACKEND_URL}/api`;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
