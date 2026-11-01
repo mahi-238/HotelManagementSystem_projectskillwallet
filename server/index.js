@@ -45,6 +45,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/rooms', require('./routes/roomRoutes'));
 app.use('/api/bookings', require('./routes/bookingRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
+app.use('/api/seed', require('./routes/seedRoutes'));
 
 // API Info & Health endpoint
 app.get('/api', (req, res) => {
@@ -56,6 +57,7 @@ app.get('/api', (req, res) => {
       rooms: '/api/rooms',
       bookings: '/api/bookings',
       dashboard: '/api/dashboard',
+      seed: '/api/seed',
     },
   });
 });

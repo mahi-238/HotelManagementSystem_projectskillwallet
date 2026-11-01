@@ -36,8 +36,8 @@ const RoomDetails = () => {
 
   const getImageUrl = (img) => {
     if (!img) return 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80';
-    if (img.startsWith('http')) return img;
-    return `${BACKEND_URL}${img}`;
+    if (img.startsWith('http://') || img.startsWith('https://')) return img;
+    return `${BACKEND_URL}${img.startsWith('/') ? '' : '/'}${img}`;
   };
 
   if (loading) return <Loading message="Loading room details..." />;
@@ -70,6 +70,9 @@ const RoomDetails = () => {
               alt={room.roomName}
               className="w-100 room-detail-img"
               style={{ maxHeight: '420px', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80';
+              }}
             />
           </div>
 

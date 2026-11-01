@@ -23,6 +23,7 @@ const ManageRooms = () => {
     pricePerNight: '',
     maxGuests: '2',
     amenities: 'Free Wi-Fi, AC, TV',
+    image: '',
     isAvailable: true,
   });
   const [imageFile, setImageFile] = useState(null);
@@ -57,6 +58,7 @@ const ManageRooms = () => {
       pricePerNight: '',
       maxGuests: '2',
       amenities: 'Free Wi-Fi, AC, TV',
+      image: '',
       isAvailable: true,
     });
     setImageFile(null);
@@ -74,6 +76,7 @@ const ManageRooms = () => {
       pricePerNight: room.pricePerNight,
       maxGuests: room.maxGuests,
       amenities: Array.isArray(room.amenities) ? room.amenities.join(', ') : room.amenities,
+      image: room.image || '',
       isAvailable: room.isAvailable,
     });
     setImageFile(null);

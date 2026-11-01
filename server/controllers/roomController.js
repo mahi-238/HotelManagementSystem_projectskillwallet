@@ -97,11 +97,11 @@ const createRoom = async (req, res) => {
       });
     }
 
-    let imagePath = '/uploads/sample-room.jpg';
+    let imagePath = 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80';
     if (req.file) {
       imagePath = `/uploads/${req.file.filename}`;
-    } else if (req.body.image) {
-      imagePath = req.body.image;
+    } else if (req.body.image && req.body.image.trim()) {
+      imagePath = req.body.image.trim();
     }
 
     let parsedAmenities = [];

@@ -41,7 +41,7 @@ const roomSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      default: '/uploads/sample-room.jpg',
+      default: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
     },
     isAvailable: {
       type: Boolean,

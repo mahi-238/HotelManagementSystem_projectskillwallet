@@ -8,8 +8,8 @@ const RoomCard = ({ room }) => {
   // Handle image URL fallback
   const getImageUrl = (img) => {
     if (!img) return 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80';
-    if (img.startsWith('http')) return img;
-    return `${BACKEND_URL}${img}`;
+    if (img.startsWith('http://') || img.startsWith('https://')) return img;
+    return `${BACKEND_URL}${img.startsWith('/') ? '' : '/'}${img}`;
   };
 
   return (
